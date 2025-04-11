@@ -1,4 +1,37 @@
-<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <rect width="120" height="120" rx="20" fill="#F9FAFB"/>
-  <path d="M35 85V35L85 85V35" stroke="#14B8A6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Animated gradient cycling through pink, blue, green -->
+    <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007CF0">
+        <animate attributeName="stop-color" values="#007CF0;#00D084;#007CF0" dur="5s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#00D084">
+        <animate attributeName="stop-color" values="#00D084;#007CF0;#00D084" dur="5s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+
+    <!-- Smooth neon glow using Gaussian blur for cleaner effect -->
+    <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blurred" />
+      <feMerge>
+        <feMergeNode in="blurred" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+
+
+
+  <!-- Group shapes to apply glow filter once -->
+  <g filter="url(#neonGlow)">
+    <!-- Outer circle with rounded joins -->
+    <circle cx="50" cy="50" r="40" stroke="url(#animatedGradient)" stroke-width="4" fill="none" stroke-linejoin="round" />
+    <!-- Custom "P" with smooth corners and cap, simplified path for fewer nodes -->
+    <path d="M40 75V25H60C68 25 72 32 72 40C72 48 68 55 60 55H40"
+          stroke="url(#animatedGradient)" stroke-width="6" fill="none"
+          stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+
+ 
 </svg>

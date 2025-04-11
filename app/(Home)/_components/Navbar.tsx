@@ -60,9 +60,9 @@ const Navbar = () => {
           isAuthenticated && !isLoading && (
             <>
 
-              <Link className='bg-cyan-50/90 dark:bg-white/80 font-semibold dark:text-black px-4 py-2 flex items-center rounded-md'
+              <Link className='bg-emerald-100 dark:text-emerald-700 cursor-pointer dark:hover:text-emerald-200 px-4 py-2 flex items-center rounded-md'
                 href="/documents">
-                Enter Nawtion
+                Enter Pages
               </Link>
               <UserButton />
 

@@ -112,8 +112,8 @@ const Particles: React.FC<ParticlesProps> = ({
       const y = mousePosition.y - rect.top - h / 2
       const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2
       if (inside) {
-        mouse.current.x = 1.7*x
-        mouse.current.y = 1.7*y
+        mouse.current.x = 1.7 * x
+        mouse.current.y = 1.7 * y
       }
     }
   }
@@ -178,6 +178,8 @@ const Particles: React.FC<ParticlesProps> = ({
       context.current.beginPath()
       context.current.arc(x, y, size, 0, 2 * Math.PI)
       context.current.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`
+      context.current.shadowColor = `rgba(${rgb.join(", ")}, 1)` // soft colored glow
+      context.current.shadowBlur = 8// controls glow intensity
       context.current.fill()
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0)
 

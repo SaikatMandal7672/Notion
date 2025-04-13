@@ -3,7 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "@/components/convex-provider";
-
+import { Toaster } from "sonner"
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -50,6 +50,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="Pages-theme-1"
           >
+            <Toaster richColors position="bottom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

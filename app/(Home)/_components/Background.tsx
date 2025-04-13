@@ -22,6 +22,8 @@ export function Background() {
         ease={40}
         color={color}
         refresh
+        vx={0.08}
+        vy={0.1}
       />
       <Particles
         className="absolute inset-0 md:hidden"

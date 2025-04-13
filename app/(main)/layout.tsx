@@ -14,7 +14,6 @@ function MainLayout({ children }: { children: React.ReactNode }) {
             <div className='h-full flex justify-center items-center'>
                 <Spinner size="icon" />
             </div>
-
         )
     }
     if (!isAuthenticated) {
@@ -23,9 +22,8 @@ function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className='h-full dark:bg-zinc-950 bg-zinc-200 flex items-center '>
             <Navigation />
-            <div className='flex-1 h-full overflow-y-auto'>
-
-                {children}
+            <div className='flex-1 h-full overflow-y-auto '>
+               {children}
             </div>
 
         </div>

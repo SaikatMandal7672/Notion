@@ -142,7 +142,7 @@ const Items = ({
                                     onClick={onArchive}
                                     className='cursor-pointer'
                                 >
-                                    <Trash className='h-4 w-4 mr-2' />Archive Page
+                                    <Trash className='h-4 w-4 mr-2' />Move to Trash
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <div className='text-xs px-3 py-1'>

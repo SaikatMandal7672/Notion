@@ -22,7 +22,7 @@ const Documents = () => {
     toast.promise(createPromise, {
       loading: 'Loading...😴',
       success: "New page created 🤩",
-      error: 'Failed to create new oage🫠',
+      error: 'Failed to create new page🫠',
     });
   }
   return (

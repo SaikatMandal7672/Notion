@@ -15,12 +15,12 @@ import React from 'react'
 const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   return (
-    <div className='max-w-3xl space-y-4'>
+    <div className='max-w-3xl space-y-4 '>
 
       <h1 className='text-3xl sm:text-5xl md:text-6xl font-bold'>
         Your Ideas , Docs and Plans. Unified. Welcome to
-        <div className="text-center text-4xl bg-background font-bold mt-0 tracking-tight md:text-5xl lg:text-7xl">
-          <AuroraText speed={2}>Pages </AuroraText>
+        <div className="text-center text-4xl  font-bold mt-0 tracking-tight md:text-5xl lg:text-7xl bg-[#edfff5] dark:bg-neutral-950">
+          <AuroraText  speed={2}>Pages </AuroraText>
           
 
         </div>

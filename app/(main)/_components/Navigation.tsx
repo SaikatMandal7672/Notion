@@ -2,9 +2,11 @@
 import {
   ChevronsLeft,
   MenuIcon,
+  Plus,
   PlusCircleIcon,
   Search,
-  Settings2
+  Settings2,
+  Trash
 } from 'lucide-react'
 import React, {
   ComponentRef,
@@ -12,15 +14,23 @@ import React, {
   useRef,
   useState
 } from 'react'
-import { cn } from '@/lib/utils';
 import { useMediaQuery } from 'usehooks-ts';
 import { usePathname } from 'next/navigation';
-import UserItems from './UserItems';
 import { useMutation } from 'convex/react';
+
+import UserItems from './UserItems';
+import { cn } from '@/lib/utils';
 import { api } from '@/convex/_generated/api';
 import Items from './Items';
 import { toast } from 'sonner';
+import DocumentList from './DocumentList';
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import TrashItems from './TrashItems';
 
 
 const Navigation = () => {
@@ -40,7 +50,7 @@ const Navigation = () => {
     toast.promise(createPromise, {
       loading: 'Loading...😴',
       success: "New page created 🤩",
-      error: 'Failed to create new oage🫠',
+      error: 'Failed to create new page🫠',
     });
 
   }
@@ -152,7 +162,21 @@ const Navigation = () => {
           icon={PlusCircleIcon}
         />
         <div className='mt-4'>
-          
+          <DocumentList />
+          <Items
+            label="Add new page"
+            icon={Plus}
+            onClick={handleCreate}
+          />
+          <Popover>
+            <PopoverTrigger className='w-full mt-4'>
+              <Items icon={Trash} label='Trash' />
+
+            </PopoverTrigger>
+            <PopoverContent className='z-[99999999]'
+              side={isMobile ? "bottom" : "right"}
+            ><TrashItems /></PopoverContent>
+          </Popover>
         </div>
         <div
           onMouseDown={handleMouseDown}

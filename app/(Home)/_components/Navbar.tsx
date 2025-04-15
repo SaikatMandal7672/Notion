@@ -22,10 +22,10 @@ const Navbar = () => {
   return (
     <div
       className={cn(
-        "z-50 fixed top-0 left-0 right-0 px-2 py-1 md:px-6 md:py-4 backdrop-blur-md flex items-center justify-between transition-all duration-300",
+        "z-50 fixed top-0 left-0 right-0 px-2 py-1 md:px-6 md:py-4 backdrop-blur-md flex items-center justify-between transition-all duration-300 mx-auto",
         scrolled
-          ? "max-w-[95%] mx-auto w-[95%] border-b shadow-sm rounded-full mt-2 dark:bg-neutral-900/70 bg-white/70 transition-all duration-300"
-          : "w-full dark:bg-neutral-950/70 bg-white/70  transition-all duration-300"
+          ? " mx-auto w-[95%] border-b shadow-sm rounded-full mt-2 dark:bg-neutral-900/70 bg-white/70 transition-all duration-300"
+          : "w-full dark:bg-neutral-950/70 bg-[#edfff5]/70  transition-all duration-300"
       )}
     >
       <div className='flex gap-3 items-center text-lg'>

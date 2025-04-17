@@ -16,6 +16,7 @@ const Logo = () => {
         width={40}
         className="dark:hidden"
       ></Image>
+      
       <Image
         alt="logo"
         src="/logo-dark.svg"

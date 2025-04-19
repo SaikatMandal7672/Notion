@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "@/components/convex-provider";
 import { Toaster } from "sonner"
+import { ModalProvider } from "@/components/modal-provider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -51,6 +52,7 @@ export default function RootLayout({
             storageKey="Pages-theme-1"
           >
             <Toaster richColors position="bottom-center" />
+            <ModalProvider/>
             {children}
           </ThemeProvider>
         </ConvexClientProvider>

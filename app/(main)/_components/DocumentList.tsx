@@ -19,7 +19,6 @@ interface DocumentListProps {
 const DocumentList = ({
     parentDocumentId,
     level = 0,
-    data
 }: DocumentListProps) => {
     const params = useParams();
     const router = useRouter();
@@ -36,7 +35,7 @@ const DocumentList = ({
         parentDocument: parentDocumentId
     });
     const onRedirect = (documentId: string) => {
-        router.push(`/documets/${documentId}`)
+        router.push(`/documents/${documentId}`)
     }
     if (documents === undefined) {
         return (

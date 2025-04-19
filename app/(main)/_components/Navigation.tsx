@@ -15,7 +15,7 @@ import React, {
   useState
 } from 'react'
 import { useMediaQuery } from 'usehooks-ts';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { useMutation } from 'convex/react';
 
 import UserItems from './UserItems';
@@ -24,6 +24,7 @@ import { api } from '@/convex/_generated/api';
 import Items from './Items';
 import { toast } from 'sonner';
 import DocumentList from './DocumentList';
+import Navbar from './Navbar';
 
 import {
   Popover,
@@ -31,9 +32,14 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import TrashItems from './TrashItems';
+import { useSearch } from '@/hooks/useSearch';
+import { useUserSettings } from '@/hooks/userSettings';
 
 
 const Navigation = () => {
+  const settings = useUserSettings();
+  const params = useParams();
+  const search = useSearch();
   const pathname = usePathname()
   const isMobile = useMediaQuery("(max-width:768px)")
   const isRezisingRef = useRef(false);
@@ -149,12 +155,12 @@ const Navigation = () => {
           label='Search '
           icon={Search}
           isSearch
-          onClick={() => { }}
+          onClick={search.toggle}
         />
         <Items
           label='Settings '
           icon={Settings2}
-          onClick={() => { }}
+          onClick={settings.onOpen}
         />
         <Items
           label="New Page"
@@ -191,11 +197,19 @@ const Navigation = () => {
           !isCollapsed && 'hidden'
         )}
       >
-        <nav className={cn(
-          'bg-transparent px-3 py-2 '
-        )}>
-          {isCollapsed && (<MenuIcon onClick={resetWidth} role='button' className='cursor-pointer w-6 h-6 text-primary transition-all ease-in-out duration-300' />)}
-        </nav>
+        {!!params.documentId ? (
+          <Navbar  
+            isCollapsed={isCollapsed}
+            isResetWidth={resetWidth}
+          />
+        ) :
+          <nav className={cn(
+            'bg-transparent px-3 py-2 '
+          )}>
+            {isCollapsed && (<MenuIcon onClick={resetWidth} role='button' className='cursor-pointer w-6 h-6 text-primary transition-all ease-in-out duration-300' />)}
+          </nav>
+        }
+
 
       </div>
     </>

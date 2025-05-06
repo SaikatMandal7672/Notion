@@ -18,22 +18,28 @@ const Navbar = ({ isCollapsed, isResetWidth }: NavbaProps) => {
   });
 
 
-  if (document === undefined) return <p>Loading</p>;
-  if (document === null) return null
+  if (document === undefined) return <nav className='dark:bg-[#1f1f1f1] px-3 py-2 w-full flex items-center gap-x-4'>
+  <Title.Skeleton/>
+</nav>;
+  if (document === null) {
+    return null
+  }
   return (
     <>
-      <nav className='bg-background dark:bg-[#1f1f1f1] px-3 py-2 w-full flex items-center gap-x-4'>
+      <nav className=' dark:bg-[#1f1f1f1] px-3 py-2 w-full flex items-center gap-x-4'>
         {
           isCollapsed &&
-          <MenuIcon 
+          <MenuIcon
             role='button'
             onClick={isResetWidth}
             className='cursor-pointer w-6 h-6 text-primary transition-all ease-in-out duration-300'
           />
         }
-        <div className='flex items-center justify-between w-full '> 
-          <Title initialData = {document} />
+
+        <div className='flex items-center w-full '>
+          <Title initialData={document} />
         </div>
+
       </nav>
     </>
   )

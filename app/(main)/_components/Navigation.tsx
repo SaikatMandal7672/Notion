@@ -110,7 +110,7 @@ const Navigation = () => {
     if (navbarRef.current && sidebarRef.current) {
       sidebarRef.current.style.width = isMobile ? "100%" : "240px";
       navbarRef.current.style.setProperty("width",
-        isMobile ? "0" : "calc(100%-240px)"
+        isMobile ? "0" : "calc(100% - 240px)"
       );
       navbarRef.current.style.setProperty("left",
         isMobile ? "100%" : "240px"
@@ -194,7 +194,7 @@ const Navigation = () => {
           "absolute top-0 left-60 w-[calc(100%-240px)] z-[999999] ",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-full left-0 ",
-          !isCollapsed && 'hidden'
+          // !isCollapsed && 'hidden'
         )}
       >
         {!!params.documentId ? (

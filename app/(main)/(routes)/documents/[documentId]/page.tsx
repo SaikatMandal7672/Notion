@@ -19,7 +19,7 @@ const DocumentId = () => {
     }
   }, [document, router])
   return (
-    <div>{params.documentId}</div>
+    <div> </div>
   )
 }
 

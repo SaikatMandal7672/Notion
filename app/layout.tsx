@@ -3,15 +3,13 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "@/components/convex-provider";
-import { Toaster } from "sonner"
+import { Toaster } from "sonner";
 import { ModalProvider } from "@/components/modal-provider";
-
+import { EdgeStoreProvider } from "@/lib/edgestrore";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
 });
-
-
 
 export const metadata: Metadata = {
   title: "Pages",
@@ -21,16 +19,15 @@ export const metadata: Metadata = {
       {
         media: "(prefers-color-scheme: light)",
         url: "/logo.svg",
-        href: "/logo.svg"
+        href: "/logo.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
         url: "/logo-dark.svg",
-        href: "/logo-dark.svg"
-      }
-
-    ]
-  }
+        href: "/logo-dark.svg",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -40,23 +37,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${roboto.className} antialiased`}
-      >
+      <body className={`${roboto.className} antialiased`}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="Pages-theme-1"
-          >
-            <Toaster richColors position="bottom-center" />
-            <ModalProvider/>
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="Pages-theme-1"
+            >
+              <Toaster richColors position="bottom-center" />
+              <ModalProvider />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>   
         </ConvexClientProvider>
-
       </body>
     </html>
   );

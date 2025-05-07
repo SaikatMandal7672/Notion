@@ -1,27 +1,31 @@
 import { useRef } from "react";
 import { useState } from "react";
-import { Doc } from "@/convex/_generated/dataModel";
 import React from "react";
+
+
+import { Doc } from "@/convex/_generated/dataModel";
+import { useCoverImage } from "@/hooks/useCoverImage";
+import { api } from "@/convex/_generated/api";
 import { IconPicker } from "./IconPicker";
 import { Button } from "./ui/button";
 import { ImageIcon, Smile, X } from "lucide-react";
 import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import TextareaAutosize from "react-textarea-autosize";
 import { ElementRef } from "react";
+
 interface ToolbarProps {
   initialData: Doc<"documents">;
   preview?: boolean;
 }
-const Toobar = ({ initialData, preview }: ToolbarProps) => {
+const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const inputRef = useRef<ElementRef<"textarea">>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(initialData.title);
-  const upadate = useMutation(api.documents.update);
-
+  const coverImage = useCoverImage();
+  const update = useMutation(api.documents.update);
+  const removeIcon  = useMutation(api.documents.removeIcon)
   const enableInput = () => {
     if (preview) return;
-
     setIsEditing(true);
     setTimeout(() => {
       inputRef.current?.focus();
@@ -32,7 +36,7 @@ const Toobar = ({ initialData, preview }: ToolbarProps) => {
 
   const onInput = (value: string) => {
     setValue(value);
-    upadate({ id: initialData._id, title: value || "Untitled" });
+    update({ id: initialData._id, title: value || "Untitled" });
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -41,18 +45,23 @@ const Toobar = ({ initialData, preview }: ToolbarProps) => {
       disableInput();
     }
   };
-
+  const onIconSelect= (icon:string) =>{
+    update({id:initialData._id, icon})
+  }
+  const onRemoveIcon = () =>{
+    removeIcon({id:initialData._id})
+  }
   return (
     <div className="pl-[54px] group relative">
       {!!initialData.icon && !preview && (
         <div className="flex items-center gap-x-2 group/icon pt-6">
-          <IconPicker onChange={() => {}}>
+          <IconPicker onChange={onIconSelect}>
             <p className="text-6xl hover:opacity-65 transition">
               {initialData.icon}
             </p>
           </IconPicker>
           <Button
-            onClick={() => {}}
+            onClick={onRemoveIcon}
             className="rounded-full opacity-0 group-hover/icon:opacity-100 transition text-muted-foreground text-xs"
             variant="outline"
             size={"icon"}
@@ -67,7 +76,7 @@ const Toobar = ({ initialData, preview }: ToolbarProps) => {
 
       <div className="opacity-0 group-hover:opacity-100 flex items-center gap-x-1 py-4">
         {!initialData.icon && !preview && (
-          <IconPicker onChange={(icon) => console.log(icon)}>
+          <IconPicker onChange={onIconSelect}>
             <Button
               className="text-muted-foreground text-xs"
               variant={"outline"}
@@ -79,7 +88,7 @@ const Toobar = ({ initialData, preview }: ToolbarProps) => {
         )}
         {!initialData.coverImage && !preview && (
           <Button
-            onClick={() => {}}
+            onClick={coverImage.onOpen}
             className="text-muted-foreground text-xs"
             variant={"outline"}
           >
@@ -110,4 +119,4 @@ const Toobar = ({ initialData, preview }: ToolbarProps) => {
   );
 };
 
-export default Toobar;
+export default Toolbar;

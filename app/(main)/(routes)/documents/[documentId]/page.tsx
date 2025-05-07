@@ -2,11 +2,13 @@
 'use client'
 import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
-import Toolbar from '@/components/Toobar';
+import Toolbar from '@/components/Toolbar';
 import { useQuery } from 'convex/react';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
+import Cover from '@/components/Cover';
+
 
 const DocumentId = () => {
   const router = useRouter();
@@ -28,7 +30,7 @@ const DocumentId = () => {
   }
   return (
     <div className='pb-40'>
-      <div className="h-[35vh]"/>
+      <Cover url={document.coverImage} />
       <div className="md:max-w-5xl  lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
         {/* <Editor initialData={document} /> */}

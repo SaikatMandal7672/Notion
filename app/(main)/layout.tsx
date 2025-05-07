@@ -25,6 +25,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
             <Navigation />
             <div className='flex-1 h-full overflow-y-auto '>
                 <SearchCommand />
+                
                {children}
             </div>
 

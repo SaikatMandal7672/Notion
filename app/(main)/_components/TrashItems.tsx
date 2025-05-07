@@ -25,7 +25,7 @@ const TrashItems = () => {
     })
 
     const onClick = (documentId: string) => {
-        router.push(`/docmunents/${documentId}`)
+        router.push(`/documents/${documentId}`)
     }
 
     const onRestore = (

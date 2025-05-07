@@ -6,6 +6,8 @@ import { api } from '@/convex/_generated/api'
 import { Id } from '@/convex/_generated/dataModel'
 import { MenuIcon } from 'lucide-react'
 import Title from './Title'
+import Banner from './Banner'
+import Menu from './Menu'
 
 interface NavbaProps {
   isCollapsed: boolean,
@@ -36,11 +38,14 @@ const Navbar = ({ isCollapsed, isResetWidth }: NavbaProps) => {
           />
         }
 
-        <div className='flex items-center w-full '>
+        <div className='flex items-center justify-between w-full '>
           <Title initialData={document} />
+          <Menu docId={document._id} />
         </div>
-
       </nav>
+      {document.isArchived && (
+        <Banner docId = {document._id} />
+      )}
     </>
   )
 }

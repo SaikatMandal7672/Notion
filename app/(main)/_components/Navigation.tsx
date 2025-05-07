@@ -34,6 +34,7 @@ import {
 import TrashItems from './TrashItems';
 import { useSearch } from '@/hooks/useSearch';
 import { useUserSettings } from '@/hooks/userSettings';
+import { ModeToggle } from '@/components/toggle-mode';
 
 
 const Navigation = () => {
@@ -187,6 +188,7 @@ const Navigation = () => {
           onMouseDown={handleMouseDown}
           onClick={resetWidth}
           className='opacity-0 group-hover/sidebar:opacity-100 transition absolute cursor-ew-resize h-full w-1.5 bg-neutral-900 right-0 top-0' />
+        <div className='relative z-[9999999] -bottom-100 ml-3'><ModeToggle /></div>
       </aside>
       <div
         ref={navbarRef}
@@ -198,7 +200,7 @@ const Navigation = () => {
         )}
       >
         {!!params.documentId ? (
-          <Navbar  
+          <Navbar
             isCollapsed={isCollapsed}
             isResetWidth={resetWidth}
           />

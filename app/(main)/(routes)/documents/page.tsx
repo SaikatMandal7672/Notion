@@ -4,7 +4,6 @@ import React from 'react'
 import { useUser } from '@clerk/clerk-react'
 import { useMutation } from 'convex/react'
 import { api } from '@/convex/_generated/api'
-import { ModeToggle } from '@/components/toggle-mode';
 import { toast } from 'sonner'
 import { PlusCircle } from 'lucide-react';
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
@@ -29,7 +28,7 @@ const Documents = () => {
     <div
       className='h-full flex items-center justify-center flex-col space-y-4'
     >
-      <div className='absolute z-[9999999] right-4 top-4'><ModeToggle /></div>
+      
       <Image
         src="/blank-dark.png"
         alt='blank'

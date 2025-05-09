@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useState } from "react";
 import React from "react";
 
-
 import { Doc } from "@/convex/_generated/dataModel";
 import { useCoverImage } from "@/hooks/useCoverImage";
 import { api } from "@/convex/_generated/api";
@@ -23,7 +22,8 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const [value, setValue] = useState(initialData.title);
   const coverImage = useCoverImage();
   const update = useMutation(api.documents.update);
-  const removeIcon  = useMutation(api.documents.removeIcon)
+  const removeIcon = useMutation(api.documents.removeIcon);
+
   const enableInput = () => {
     if (preview) return;
     setIsEditing(true);
@@ -45,12 +45,12 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
       disableInput();
     }
   };
-  const onIconSelect= (icon:string) =>{
-    update({id:initialData._id, icon})
-  }
-  const onRemoveIcon = () =>{
-    removeIcon({id:initialData._id})
-  }
+  const onIconSelect = (icon: string) => {
+    update({ id: initialData._id, icon });
+  };
+  const onRemoveIcon = () => {
+    removeIcon({ id: initialData._id });
+  };
   return (
     <div className="pl-[54px] group relative">
       {!!initialData.icon && !preview && (

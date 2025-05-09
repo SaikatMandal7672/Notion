@@ -21,11 +21,14 @@ export function SingleImageDropzoneUsage({ id }: props) {
   const { edgestore } = useEdgeStore();
   const update = useMutation(api.documents.update);
   const uploadFn: UploadFn = React.useCallback(
-    async ({ file, onProgressChange, signal }) => {
+    async ({ file,onProgressChange ,signal }) => {
       const res = await edgestore.publicFiles.upload({
         file,
         signal,
         onProgressChange,
+        options: {
+          replaceTargetUrl: coverImage.url,
+        },
       });
       // you can run some server action or api here
       // to add the necessary data to your database

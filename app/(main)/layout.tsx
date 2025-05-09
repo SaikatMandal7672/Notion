@@ -21,7 +21,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
         router.replace("/");
     }
     return (
-        <div className='h-full dark:bg-zinc-950 bg-zinc-200 flex items-center '>
+        <div className='h-full dark:bg-[#1f1f1f] bg-white flex items-center '>
             <Navigation />
             <div className='flex-1 h-full overflow-y-auto '>
                 <SearchCommand />
